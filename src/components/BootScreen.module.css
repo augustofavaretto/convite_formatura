@@ -1,0 +1,101 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  /* Foto de abertura escurecida atrás do terminal, para o texto seguir legível */
+  background:
+    linear-gradient(rgba(11, 17, 32, 0.78), rgba(11, 17, 32, 0.88)),
+    url('/fotos/foto-abertura.jpg') center / cover no-repeat,
+    var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: opacity 0.7s ease;
+}
+
+.saindo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.matriz {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.terminal {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  font-family: var(--fonte-mono);
+  font-size: 0.86rem;
+  line-height: 1.9;
+}
+
+.progresso {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.trilhoProgresso {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(240, 212, 138, 0.15);
+  overflow: hidden;
+}
+
+.preenchimentoProgresso {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+  transition: width 0.5s ease;
+}
+
+.percentual {
+  font-size: 0.75rem;
+  color: var(--gold-soft);
+  min-width: 4ch;
+  text-align: right;
+}
+
+.linha {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  animation: surgir 0.3s ease both;
+}
+
+.comando {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.ok {
+  color: var(--gold-soft);
+}
+
+.final {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,63 @@
+.rodape {
+  padding: 48px 0 56px;
+}
+
+.icones {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.icone {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 212, 138, 0.35);
+  color: var(--gold-soft);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.icone:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.icone:active {
+  transform: scale(0.95);
+}
+
+.icone svg {
+  width: 22px;
+  height: 22px;
+}
+
+.credito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 30px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.credito a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logoCredito {
+  height: 18px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.credito a:hover .logoCredito {
+  opacity: 1;
+  transform: translateY(-1px);
+}

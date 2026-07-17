@@ -1,0 +1,53 @@
+/* Esteira contínua: as fotos fluem sem parar, sem controles */
+.esteira {
+  overflow: hidden;
+  margin: 0 -20px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.trilho {
+  display: flex;
+  width: max-content;
+  animation: rolar 30s linear infinite;
+}
+
+.foto {
+  width: 230px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--raio);
+  margin-right: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes rolar {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- Desktop: fotos maiores, esteira mais lenta ---- */
+@media (min-width: 900px) {
+  .foto {
+    width: 300px;
+    margin-right: 18px;
+  }
+
+  .trilho {
+    animation-duration: 38s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trilho {
+    animation: none;
+  }
+
+  /* Sem animação, vira uma faixa rolável manualmente */
+  .esteira {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}

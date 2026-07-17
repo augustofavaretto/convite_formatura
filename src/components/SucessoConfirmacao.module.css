@@ -1,0 +1,180 @@
+/* ---- Chuva de capelos ---- */
+.chuva {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.capelo {
+  position: absolute;
+  top: -70px;
+  animation-name: cair;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cair {
+  to {
+    transform: translate(var(--deriva), 115vh) rotate(320deg);
+  }
+}
+
+/* ---- Foto com degradê (igual à capa) ---- */
+.fotoMoldura {
+  position: relative;
+  margin: 0 -20px;
+}
+
+.foto {
+  width: 100%;
+  display: block;
+}
+
+.degrade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent 32%, var(--ink) 80%);
+}
+
+/* Começa sobre o trecho já escurecido da foto e flui para baixo */
+.conteudo {
+  position: relative;
+  z-index: 1;
+  margin: -230px 4px 0;
+  text-align: center;
+}
+
+.confirmacao {
+  color: var(--paper);
+  font-size: 0.95rem;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+.titulo {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--gold);
+  margin: 10px 0 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* ---- Despedida ("Não vou") ---- */
+.despedida {
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin: 14px auto 0;
+  max-width: 40ch;
+}
+
+.assinatura {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin: 12px 0 0;
+}
+
+/* ---- Cronômetro (mesmo estilo do Save the date) ---- */
+.faltam {
+  font-family: var(--fonte-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 20px 0 0;
+}
+
+.contagem {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.unidade {
+  background: rgba(11, 17, 32, 0.67);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 0;
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+}
+
+.valor {
+  font-family: var(--fonte-mono);
+  font-size: 1.25rem;
+  color: var(--paper);
+  animation: pulsoValor 0.3s ease;
+}
+
+.rotulo {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+@keyframes pulsoValor {
+  from {
+    transform: scale(1.25);
+    color: var(--gold-soft);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ---- Desktop: retrato inteiro encostado no topo, sobre a foto desfocada ---- */
+@media (min-width: 900px) {
+  .fotoMoldura {
+    margin: 0 calc(50% - 50vw);
+    height: 88vh;
+    overflow: hidden;
+  }
+
+  /* Fundo: a mesma foto, desfocada e escurecida, preenchendo as laterais */
+  .fotoMoldura::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/fotos/foto-confirmacao.jpg') center 30% / cover no-repeat;
+    filter: blur(30px) brightness(0.38) saturate(1.1);
+    transform: scale(1.1);
+  }
+
+  .foto {
+    position: relative;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .titulo {
+    font-size: 3rem;
+  }
+
+  .unidade {
+    width: 86px;
+    padding: 14px 0;
+  }
+
+  .valor {
+    font-size: 1.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capelo,
+  .valor {
+    animation: none;
+  }
+}

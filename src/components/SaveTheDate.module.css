@@ -1,0 +1,137 @@
+.cartao {
+  text-align: center;
+}
+
+/* Data em linha única: AGOSTO | 15 | 2026, com o dia em destaque */
+.dataLinha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.3rem, 5.5vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+  color: var(--paper);
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.diaDestaque {
+  font-size: clamp(3.2rem, 13vw, 5.4rem);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0;
+}
+
+.separador {
+  color: var(--gold-soft);
+  opacity: 0.55;
+  font-weight: 400;
+}
+
+/* Entrada com "pop" + brilho dourado respirando depois */
+.secao:global(.visivel) .dataLinha {
+  animation:
+    popDia 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    brilhoDia 3.2s ease-in-out 1s infinite;
+}
+
+.contagem {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.secao:global(.visivel) .contagem {
+  animation: subir 0.55s ease-out 0.4s forwards;
+}
+
+.unidade {
+  background: rgba(11, 17, 32, 0.67);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 0;
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+}
+
+.valor {
+  font-family: var(--fonte-mono);
+  font-size: 1.25rem;
+  color: var(--paper);
+  animation: pulsoValor 0.3s ease;
+}
+
+.rotulo {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+@keyframes popDia {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes brilhoDia {
+  0%,
+  100% {
+    text-shadow: 0 0 12px rgba(227, 178, 60, 0.25);
+  }
+  50% {
+    text-shadow: 0 0 28px rgba(227, 178, 60, 0.55), 0 0 54px rgba(227, 178, 60, 0.2);
+  }
+}
+
+@keyframes subir {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulsoValor {
+  from {
+    transform: scale(1.25);
+    color: var(--gold-soft);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ---- Desktop: contadores maiores ---- */
+@media (min-width: 900px) {
+  .unidade {
+    width: 86px;
+    padding: 14px 0;
+  }
+
+  .valor {
+    font-size: 1.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dataLinha,
+  .contagem {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+  .valor {
+    animation: none;
+  }
+}

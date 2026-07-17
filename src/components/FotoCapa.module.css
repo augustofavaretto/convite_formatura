@@ -1,0 +1,262 @@
+.secao {
+  padding: 0;
+}
+
+/* Sangra até as bordas da tela no mobile */
+.moldura {
+  position: relative;
+  margin: 0 -20px;
+}
+
+.foto {
+  width: 100%;
+  display: block;
+}
+
+/* Funde a foto com o azul-noite do fundo apenas embaixo */
+.degrade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent 50%, var(--ink) 94%);
+}
+
+/* Começa sobre o trecho já escurecido da foto e flui para baixo dela */
+.legenda {
+  position: relative;
+  z-index: 1;
+  margin: -130px 4px 0;
+  text-align: center;
+}
+
+.frase {
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: 26ch;
+  margin: 0 auto;
+  color: var(--paper);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+.frase em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.aspa {
+  color: var(--gold);
+}
+
+/* Cascata: cada palavra sobe e ganha foco quando a seção fica visível */
+.palavra {
+  display: inline-block;
+  margin-right: 0.28em;
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(6px);
+}
+
+.palavra:last-child {
+  margin-right: 0;
+}
+
+/* Mantém o destaque dourado inteiro na mesma linha */
+.semQuebra {
+  white-space: nowrap;
+}
+
+.secao:global(.visivel) .palavra {
+  animation: surgirPalavra 0.55s ease-out var(--atraso) forwards;
+}
+
+/* Depois da cascata, o destaque dourado respira — mesmo brilho da data */
+.secao:global(.visivel) .frase em {
+  animation: brilhoDestaque 3.2s ease-in-out 2.4s infinite;
+}
+
+@keyframes brilhoDestaque {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(227, 178, 60, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 22px rgba(227, 178, 60, 0.6), 0 0 44px rgba(227, 178, 60, 0.25);
+  }
+}
+
+.nome {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2.9rem;
+  line-height: 1.1;
+  color: var(--gold);
+  margin: 14px 0 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+.familia {
+  font-size: 0.95rem;
+  color: var(--paper);
+  margin: 10px 0 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+.curso {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.9rem;
+  line-height: 1.15;
+  color: var(--gold-soft);
+  margin: 6px 0 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+.presenca {
+  font-size: 0.95rem;
+  color: var(--paper);
+  margin: 16px 0 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+/* O bloco formal surge depois da cascata da citação */
+.nome,
+.familia,
+.curso,
+.presenca {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.secao:global(.visivel) .nome {
+  animation: subir 0.6s ease-out 1.15s forwards;
+}
+
+.secao:global(.visivel) .familia {
+  animation: subir 0.6s ease-out 1.35s forwards;
+}
+
+.secao:global(.visivel) .curso {
+  animation: subir 0.6s ease-out 1.55s forwards;
+}
+
+.secao:global(.visivel) .presenca {
+  animation: subir 0.6s ease-out 1.75s forwards;
+}
+
+@keyframes surgirPalavra {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes subir {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Desktop: retrato inteiro sobre a própria foto desfocada preenchendo a tela ---- */
+@media (min-width: 900px) {
+  .secao {
+    position: relative;
+    padding: 24px 0 0;
+    margin: 0 calc(50% - 50vw);
+    overflow: hidden;
+  }
+
+  /* Fundo: a mesma foto, desfocada e escurecida, cobrindo a tela inteira */
+  .secao::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url('/fotos/foto-capa.jpg') center 30% / cover no-repeat;
+    filter: blur(30px) brightness(0.38) saturate(1.1);
+    transform: scale(1.1);
+  }
+
+  /* Funde a base do fundo desfocado com o azul-noite da página */
+  .secao::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32%;
+    z-index: 0;
+    background: linear-gradient(to bottom, transparent, var(--ink));
+    pointer-events: none;
+  }
+
+  /* A moldura encolhe para o tamanho exato da foto */
+  .moldura {
+    margin: 0 auto;
+    width: fit-content;
+    z-index: 1;
+  }
+
+  .legenda {
+    z-index: 1;
+  }
+
+  /* Foto inteira, sem corte: só limita a altura à tela */
+  .foto {
+    width: auto;
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: var(--raio) var(--raio) 0 0;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+  }
+
+  .degrade {
+    background: linear-gradient(to bottom, transparent 50%, var(--ink) 94%);
+  }
+
+  /* Como no mobile: começa no trecho já escurecido e flui para baixo da foto */
+  .legenda {
+    margin: -120px auto 0;
+    max-width: 720px;
+  }
+
+  .frase {
+    font-size: 1.45rem;
+    max-width: 36ch;
+  }
+
+  .nome {
+    font-size: 3.2rem;
+  }
+
+  .curso {
+    font-size: 2rem;
+  }
+
+  .familia,
+  .presenca {
+    font-size: 1.02rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .palavra,
+  .nome,
+  .familia,
+  .curso,
+  .presenca {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none !important;
+  }
+
+  .frase em {
+    animation: none !important;
+  }
+}

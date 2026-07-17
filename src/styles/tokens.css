@@ -1,0 +1,18 @@
+:root {
+  /* Cores do tema "gala + programação" */
+  --ink: #0b1120;
+  --ink-2: #111b31;
+  --gold: #e3b23c;
+  --gold-soft: #f0d48a;
+  --paper: #f5f0e4;
+  --muted: #9aa6c0;
+
+  /* Tipografia */
+  --fonte-titulo: 'Fraunces', 'Georgia', serif;
+  --fonte-corpo: 'Manrope', -apple-system, 'Segoe UI', sans-serif;
+  --fonte-mono: 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
+
+  /* Métricas */
+  --raio: 18px;
+  --largura-max: 520px;
+}

@@ -1,0 +1,152 @@
+h2.tituloRsvp {
+  color: #ffffff;
+}
+
+.dataLimite {
+  color: var(--gold);
+}
+
+.formulario {
+  background: var(--ink-2);
+  border: 1px solid rgba(240, 212, 138, 0.14);
+  border-radius: var(--raio);
+  padding: 24px 20px;
+  display: grid;
+  gap: 18px;
+}
+
+.escolha {
+  background: var(--ink-2);
+  border: 1px solid rgba(240, 212, 138, 0.14);
+  border-radius: var(--raio);
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.escolhaPergunta {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--paper);
+  margin: 0 0 18px;
+}
+
+.escolhaBotoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.voltar {
+  justify-self: start;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+
+.voltar:hover {
+  color: var(--gold-soft);
+}
+
+.campoGrupo {
+  display: grid;
+  gap: 7px;
+}
+
+.campoGrupo label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold-soft);
+}
+
+.campoGrupo input {
+  background: rgba(11, 17, 32, 0.7);
+  border: 1px solid rgba(240, 212, 138, 0.22);
+  border-radius: 12px;
+  padding: 13px 14px;
+  color: var(--paper);
+  font-size: 0.95rem;
+}
+
+.campoGrupo input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--paper);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.trilhoToggle {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 25px;
+  border-radius: 999px;
+  background: rgba(154, 166, 192, 0.35);
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.trilhoToggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--paper);
+  transition: transform 0.2s ease;
+}
+
+.toggle input:checked + .trilhoToggle {
+  background: var(--gold);
+}
+
+.toggle input:checked + .trilhoToggle::after {
+  transform: translateX(19px);
+}
+
+.toggle input:focus-visible + .trilhoToggle {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ---- Desktop: formulários centralizados ---- */
+@media (min-width: 900px) {
+  .formulario,
+  .escolha {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.erro {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(200, 70, 70, 0.14);
+  border: 1px solid rgba(220, 100, 100, 0.4);
+  color: #f3b8b8;
+  font-size: 0.88rem;
+}
+
