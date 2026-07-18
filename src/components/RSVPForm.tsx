@@ -141,7 +141,7 @@ export default function RSVPForm() {
               onChange={(e) => setTemAcompanhante(e.target.checked)}
             />
             <span className={styles.trilhoToggle} aria-hidden="true" />
-            Vou levar acompanhante
+            Tenho acompanhante informado no convite
           </label>
 
           {temAcompanhante && (
