@@ -59,6 +59,7 @@ export default function PixGift() {
         </p>
         <p className={styles.chave}>{CONFIG.pixChave}</p>
         <button type="button" className="btn btn-ouro" onClick={copiar}>
+          <img className={styles.iconePix} src="/icones/pix.png" alt="" />
           Copiar chave Pix
         </button>
         <p className={styles.feedback} role="status">

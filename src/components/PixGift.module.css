@@ -36,6 +36,13 @@
   user-select: all;
 }
 
+.iconePix {
+  width: 18px;
+  height: 18px;
+  /* logo original é verde; branco puro para contrastar com o botão dourado */
+  filter: brightness(0) invert(1);
+}
+
 .feedback {
   font-family: var(--fonte-mono);
   font-size: 0.8rem;
